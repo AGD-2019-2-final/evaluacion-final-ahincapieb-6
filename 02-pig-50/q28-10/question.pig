@@ -29,4 +29,5 @@ u = LOAD 'data.csv' USING PigStorage(',')
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
-
+r = FOREACH u GENERATE ToDate(birthday,'yyyy-MM-dd') AS (date_time:DateTime);
+x = FOREACH r GENERATE GetYear(date_time), ToString($0,'yy');
